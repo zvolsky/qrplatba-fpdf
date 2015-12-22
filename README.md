@@ -7,7 +7,7 @@ This is alternative to the qrplatba module.
 install_requires = ['wfpdf', 'pyqrcode']   # wfpdf requires fpdf
 ```
 
-- 0.9.1 PyPI published
+- 0.9.2 PyPI published
 
 ## Usage:
 ```

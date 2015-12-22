@@ -115,5 +115,4 @@ if __name__ == '__main__':
         qrplatba(pdf, IBAN, castka='249.00', mena='USD', VS='2015111', msg='Smith J.', w=30, x=20, y=60,
                  X_URL='HTTP://WWW.SOMEURL.COM/')
 
-        from __future__ import print_function
-        print('%s was created.' % outputname)
+    print('%s was created.' % outputname)

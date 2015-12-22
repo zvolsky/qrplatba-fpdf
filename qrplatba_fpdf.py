@@ -13,8 +13,8 @@ from datetime import date
 import os
 import tempfile
 
-import pyqrcode   # pip install pyqrcode
-from wfpdf import PDF
+import pyqrcode         # pip install pyqrcode
+from wfpdf import PDF   # pip install wfpdf
 
 
 def qrplatba(pdf,
@@ -100,8 +100,20 @@ if __name__ == '__main__':
     IBAN = 'CZ6255000000000001234567'
     castka = 2499
 
-    with PDF('test_qrplatba.pdf') as pdf:
+    # just to make demo working: we need readwrite access
+    outputname = 'test_qrplatba.pdf'
+    try:
+        with open(outputname, 'wb'):
+            pass
+        os.unlink(outputname)
+    except IOError:
+        outputname = os.path.join(tempfile.gettempdir(), outputname)
+
+    with PDF(outputname) as pdf:
         pdf.set_font('', style='B')
         qrplatba(pdf, IBAN, castka=2499)
         qrplatba(pdf, IBAN, castka='249.00', mena='USD', VS='2015111', msg='Smith J.', w=30, x=20, y=60,
                  X_URL='HTTP://WWW.SOMEURL.COM/')
+
+        from __future__ import print_function
+        print('%s was created.' % outputname)
